@@ -84,16 +84,16 @@ subject_test <- read.csv("./test/subject_test.txt",col.names="subject",header=FA
 ## 5) Melt and cast based on Subject and Activity
 #################################################################
 
-#### Melting with columns "subject" and "activity", everything else is a variable
+Melting with columns "subject" and "activity", everything else is a variable
 
 ```r
 Xmelt<-melt(combined_X,id=c("subject","activity"),measure.vars=names(combined_X)[3:length(combined_X)])
 ```
-#### Casting, grouped by subject and activity.
+Casting, grouped by subject and activity.
 ```r
   tidyCombined <- dcast(Xmelt, subject+activity~variable, mean)
 ```
-#### A little extra to clean up those pesky periods (.) and extra fBody in the column names
+A little extra to clean up those pesky periods (.) and extra fBody in the column names
 ```r
   colnames(tidyCombined)<-sub("*[:punct:]*|fBody|","",as.character(names(tidyCombined)))
   tidyCombined
