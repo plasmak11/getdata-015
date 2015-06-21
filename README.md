@@ -5,14 +5,17 @@
 #################################################################
 # 1) Get a list of features, activity labels, and rows that contain 'mean' or std' in feature list.
 #################################################################
+```r
   features <- read.delim("features.txt",sep="",col.names=c("feature_id","feature"),header=FALSE)
-
+```
 # Activity labels i.e WALKING, LAYING, STANDING, etc
+```r
   activity_labels <- read.delim("activity_labels.txt",sep="",header=FALSE)
-
+```
 # Search the features table for the list of row #s that has 'mean' or 'std'
+```r
   meanstdCheck<-grep("mean()|std()",as.character(features[,2]))
-
+```
 #################################################################
 # Goal: X_test will store feature measurements from "test" folder filtered by mean/std
 #################################################################
@@ -63,12 +66,12 @@
 #################################################################
 # 4) combined_X will combine test and train data sets!
 #################################################################
-
+```r
   combined_X <- rbind(X_test,X_train)
   colnames(combined_X)[2]<-"activity"
   combined_X$V1<-NULL
   combined_X$subject<-factor(combined_X$subject)
-
+```
 #################################################################
 # 5) Melt and cast based on Subject and Activity
 #################################################################
