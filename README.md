@@ -3,7 +3,7 @@ README.md
 ---
 ---
 
-## 1) Get a list of features, activity labels, and rows that contain 'mean' or std' in feature list.
+#### 1) Get a list of features, activity labels, and rows that contain 'mean' or std' in feature list.
 ---
 ```r
   features <- read.delim("features.txt",sep="",col.names=c("feature_id","feature"),header=FALSE)
@@ -17,7 +17,7 @@ Search the features table for the list of row #s that has 'mean' or 'std'
   meanstdCheck<-grep("mean()|std()",as.character(features[,2]))
 ```
 ---
-## Goal: X_test will store feature measurements from "test" folder filtered by mean/std
+#### Goal: X_test will store feature measurements from "test" folder filtered by mean/std
 ---
 
 Read data from 'test' folder
@@ -42,11 +42,11 @@ Probably there's a better way to do this.
   X_test <- merge(activity_labels,X_test,by.x="V1",by.y="X")
 ```
 ---
-## 2) X_test now stores all mean and std raw feature measurements
+#### 2) X_test now stores all mean and std raw feature measurements
 ---
 
 ---
-## Goal: X_train will store feature measurements from "train" folder filtered by mean/std
+#### Goal: X_train will store feature measurements from "train" folder filtered by mean/std
 ---
 
 Read data from 'train' folder
@@ -67,12 +67,12 @@ Merging the activity labels, based on the activity ID and activity labels.
   X_train <- merge(activity_labels,X_train,by.x="V1",by.y="X")
 ```
 ---
-## 3) X_train now stores all mean and std raw feature measurements.
+#### 3) X_train now stores all mean and std raw feature measurements.
 ---
 
 
 ---
-## 4) Combine test and train data sets to combined_X dataframe.
+#### 4) Combine test and train data sets to combined_X dataframe.
 ---
 ```r
   combined_X <- rbind(X_test,X_train)
@@ -81,7 +81,7 @@ Merging the activity labels, based on the activity ID and activity labels.
   combined_X$subject<-factor(combined_X$subject)
 ```
 ---
-## 5) Melt and cast based on Subject and Activity.
+#### 5) Melt and cast based on Subject and Activity.
 ---
 
 Melting with columns "subject" and "activity", everything else is a variable
@@ -98,3 +98,5 @@ A little extra to clean up those pesky periods (.) and extra fBody in the column
   colnames(tidyCombined)<-sub("*[:punct:]*|fBody|","",as.character(names(tidyCombined)))
   tidyCombined
 ```
+
+#### Hope this helps someone!
